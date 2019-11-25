@@ -1,0 +1,4 @@
+string = "enter string"
+motif = "enter substring"
+
+print ' '.join([str(i + 1) for i in xrange(len(string)) if string[i:i + len(motif)] == motif])
