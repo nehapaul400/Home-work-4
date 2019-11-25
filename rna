@@ -1,0 +1,5 @@
+from string import maketrans
+dna = 'enter input'
+tu = maketrans('tT','uU')
+rna = dna.translate(tu)
+print (rna)
