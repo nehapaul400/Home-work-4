@@ -1,0 +1,22 @@
+from collections import Counter
+from operator import itemgetter
+
+string = """ enter input """
+
+blocks = string.split(">")[1:]
+
+DNAS = {}
+
+def getCG(DNA):
+    ctr = Counter(DNA)
+    return float( ctr['C'] + ctr['G'] ) / len(DNA)
+
+for block in blocks:
+    [name, DNA] = block.split("\n", 1)
+    DNA = DNA.replace("\n", '')
+    DNAS[name] = getCG(DNA)
+
+DNAS_S = sorted(DNAS.iteritems(), key=itemgetter(1))
+
+print DNAS_S[-1][0]
+print '%2.2f%%' % (DNAS_S[-1][1]*100)
