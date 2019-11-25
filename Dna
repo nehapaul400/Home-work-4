@@ -1,0 +1,6 @@
+input = "enter input"
+a = input.count("A")
+c = input.count("C")
+g = input.count("G")
+t = input.count("T")
+print a, c, g, t
