@@ -1,0 +1,7 @@
+inc = [(0,[])]*(n+1)
+
+for i in l:
+    x,y = max(inc[:i])
+    inc[i] = (x+1,y+[i])
+
+print(" ".join(map(str,max(inc)[1])))
