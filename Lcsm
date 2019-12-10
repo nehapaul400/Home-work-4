@@ -1,0 +1,8 @@
+def longestCommon(seqs):
+  shortest = min(seqs, key=len)
+  for length in xrange(len(shortest), 0, -1):
+    for start in xrange(len(shortest) - length + 1):
+      sub = shortest[start:start+length]
+      if all(seq.find(sub) >= 0 for seq in seqs):
+        return sub
+  return ""
