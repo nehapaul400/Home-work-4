@@ -1,10 +1,7 @@
-from Bio.Seq import Seq
-from Bio import SeqIO
-
-instream = SeqIO.parse("rosalind_splc.txt","fasta")
-target = str(instream.next().seq)
-
-for intron in instream:
-    target = target.replace(str(intron.seq),"")
-
-print Seq(target).translate()[:-1]
+l = []
+for i in range(0, len(str), 3):
+    f = str[i:i+3]
+    b.append(f)
+    l.append(f)
+c = ''.join(cod[i] for i in l)
+print(c)
