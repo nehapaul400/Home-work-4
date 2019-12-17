@@ -1,9 +1,35 @@
-with open('rosalind_revp.txt', 'r') as file:
-    s = ''.join(x.strip() for x in file.readlines()[1:])
-dic = {'G':'C','C':'G','A':'T','T':'A'}
-for i in range(len(s)-3):
-    for j in range(min(len(s), i+12), i+3, -1):
-        current = s[i:j]
-        revcomp = ''.join(dic[x] for x in current)[::-1]
-        if current == revcomp:
-            print(i+1, j-i)
+def read_fasta(file):
+    fp = open(r'C:\Users\i_6dqb2kf\Downloads\rosalind_revp (1).txt', 'r')
+    seq = {}
+    s = ''
+    for line in fp:
+        if line.startswith('>'):
+            name = line.strip('\n')
+            name = name.strip('>')
+            seq[name] = ''
+        else:
+            seq[name] += line.strip('\n')
+    for i in seq.keys():
+        s = seq[i]
+    return s
+
+def switch(s):
+    s = s[::-1]
+    switch_s = ''
+    for i in range(len(s)):
+        if s[i] == 'A':
+            switch_s += 'T'
+        elif s[i] == 'T':
+            switch_s += 'A'
+        elif s[i] == 'G':
+            switch_s += 'C'
+        elif s[i] == 'C':
+            switch_s += 'G'
+    return switch_s
+def palindrome(file):
+    s1 = read_fasta(file)
+    for i in range(len(s1)):
+        for j in range(4,13,1):
+            if s1[i:i+j] == switch(s1[i:i+j]) and (i+j <= len(s1)):
+                print( i+1, j)
+palindrome(r"C:\Users\i_6dqb2kf\Downloads\rosalind_revp (1).txt")
