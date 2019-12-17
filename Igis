@@ -1,7 +1,54 @@
-inc = [(0,[])]*(n+1)
-
-for i in l:
-    x,y = max(inc[:i])
-    inc[i] = (x+1,y+[i])
-
-print(" ".join(map(str,max(inc)[1])))
+def lgis(x):
+    lenI = len(x)
+    P = [0]*lenI
+    M = [0]*(lenI+1)
+    L = 0
+    for i in range(lenI):
+        lo = 1
+        hi = L
+        while lo <= hi:
+            mid = (lo+hi)//2
+            if (x[M[mid]] < x[i]):
+                lo = mid+1
+            else:
+                hi = mid-1
+        newL = lo
+        P[i] = M[newL-1]
+        M[newL] = i
+        if (newL > L):
+            L = newL
+    S = []
+    k = M[L]
+    for i in range(L-1, -1, -1):
+        S.append(x[k])
+        k = P[k]
+    y = x[::-1]
+    lenD = len(y)
+    PP = [0]*lenD
+    MM = [0]*(lenD+1)
+    LL = 0
+    for ii in range(lenD):
+        llo = 1
+        hhi = LL
+        while llo <= hhi:
+            mmid = (llo+hhi)//2
+            if (y[MM[mmid]] < y[ii]):
+                llo = mmid+1
+            else:
+                hhi = mmid-1
+        nnewL = llo
+        PP[ii] = MM[nnewL-1]
+        MM[nnewL] = ii
+        if (nnewL > LL):
+            LL = nnewL
+    SS = []
+    kk = MM[LL]
+    for ii in range(LL-1, -1, -1):
+        SS.append(y[kk])
+        kk = PP[kk]
+    fin = [S[::-1], SS]
+    for j in fin:
+        print(*j)
+    return('')
+x = list(map(int, input().split()))
+print(lgis(x))
